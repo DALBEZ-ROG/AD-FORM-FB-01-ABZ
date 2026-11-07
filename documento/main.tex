@@ -43,7 +43,7 @@
   \item[Tipo de fuente:] Artículo de revista. \emph{Computing}, Springer. ISSN 0010-485X, e-ISSN 1436-5057.
   \item[Resumen:] El artículo revisa los desafíos de consistencia en microservicios basados en eventos. El problema es que el conocimiento está fragmentado y no hay consenso sobre cómo definir y mantener la consistencia de datos, procesos y sistemas en arquitecturas distribuidas. Los autores hicieron una revisión sistemática de literatura siguiendo las directrices de Kitchenham y analizaron 38 estudios de Web of Science para clasificar los enfoques existentes. Encontraron tres tipos de consistencia (datos, procesos y evolución del sistema), describieron las estrategias de cada uno y señalaron un vacío importante: la desconexión entre el diseño de los procesos de negocio y su ejecución.
   \item[Dato concreto:] \foreignquote{american}{Unlike ACID transactions, Sagas do not provide isolation and instead operate under eventual consistency} \cite[Sec.~2.6, p.~6]{bacao2026}.
-  \item[Nota personal:] Este artículo me ayudó a conectar la teoría de sistemas distribuidos con la gestión de procesos de negocio y a entender por qué fallan los microservicios cuando no se alinean los datos, los procesos y la evolución de la arquitectura. Lo usaré en TA-IND-01 para analizar cómo el sistema elegido mantiene sus datos coherentes.
+  \item[Nota personal:] Este artículo me ayudó a conectar la teoría de sistemas distribuidos con la gestión de procesos de negocio y a entender por qué fallan los microservicios cuando no se alinean los datos, los procesos y la evolución de la arquitectura. Lo usaré en TA-IND-01, en la parte de CAP y PACELC, para explicar qué consistencia elige el sistema y qué pasa cuando falla un paso (tolerancia a fallos).
 \end{description}
 
 \section{Ficha 2}
@@ -53,7 +53,7 @@
   \item[Tipo de fuente:] Artículo de revista. \emph{Cluster Computing}, Springer. ISSN 1386-7857, e-ISSN 1573-7543.
   \item[Resumen:] Los gestores de malla de servicios actuales solo manejan el patrón de canalización (pipes \& filters) y delegan los demás patrones al gestor de contenedores, lo que complica combinarlos. Para resolverlo, los autores proponen las Eblocks, unidades que integran de forma implícita los componentes de la malla (descubrimiento, autenticación y monitoreo) junto con la lógica de procesamiento. Con un caso de estudio real lograron desplegar patrones como manager-worker y patrones internos dentro de cada Eblock, con menores tiempos de servicio y mayor rendimiento que la misma solución montada con Istio sobre Kubernetes.
   \item[Dato concreto:] \foreignquote{american}{a service mesh (e.g., Istio) is focused on the communication and interactions between services within a microservices architecture} \cite[Sec.~6, p.~7431]{nicolasplata2024}.
-  \item[Nota personal:] Me llamó la atención que Istio depende de Kubernetes para crear réplicas, mientras que las Eblocks llevan las tareas de la malla dentro de cada bloque sin depender tanto del clúster. Me sirvió para conocer otra forma de optimizar flujos de procesamiento intensivos en microservicios. Lo usaré en TA-IND-01 para explicar cómo se comunican los servicios del sistema.
+  \item[Nota personal:] Me llamó la atención que Istio depende de Kubernetes para crear réplicas, mientras que las Eblocks llevan las tareas de la malla dentro de cada bloque sin depender tanto del clúster. Me sirvió para conocer otra forma de optimizar flujos de procesamiento intensivos en microservicios. Lo usaré en TA-IND-01, en los modelos de comunicación y en la arquitectura del sistema, para explicar cómo se hablan los servicios entre sí.
 \end{description}
 
 \section{Ficha 3}
@@ -63,7 +63,7 @@
   \item[Tipo de fuente:] Artículo de revista. \emph{IEEE Access}, IEEE. e-ISSN 2169-3536.
   \item[Resumen:] El trabajo aborda la falta de conocimiento sobre los principios teóricos para descomponer sistemas monolíticos en microservicios. Los autores revisan la literatura y relacionan los principios de modularización y de ocultamiento de información de David Parnas (1972) con las recomendaciones de Martin Fowler y Sam Newman; también analizan patrones de diseño y casos de estudio. Proponen una comparación que unifica estos criterios, un resumen de las ventajas y desventajas de ambos enfoques y pautas para enfrentar los desafíos técnicos y organizacionales de la migración.
   \item[Dato concreto:] En 2002, en Amazon, \foreignquote{american}{all work teams had to expose their data and business functionality through services} \cite[Sec.~V-A, p.~88355]{velepucha2023}.
-  \item[Nota personal:] Este análisis me permitió conectar las bases históricas de la ingeniería de software (como el ocultamiento de información) con las tendencias modernas de desarrollo. Me otorga una visión crítica para justificar cuándo vale la pena migrar a microservicios y cómo estructurar equipos autónomos y sistemas desacoplados de forma sostenible. Lo usaré en el marco teórico de TA-IND-01 para explicar qué es un monolito y qué son los microservicios.
+  \item[Nota personal:] Este análisis me permitió conectar las bases históricas de la ingeniería de software (como el ocultamiento de información) con las tendencias modernas de desarrollo. Me otorga una visión crítica para justificar cuándo vale la pena migrar a microservicios y cómo estructurar equipos autónomos y sistemas desacoplados de forma sostenible. Lo usaré en la introducción y en la arquitectura del sistema de TA-IND-01 para explicar qué es un monolito, qué son los microservicios y poner el caso de Amazon como ejemplo.
 \end{description}
 
 \section{Ficha 4}
@@ -73,7 +73,7 @@
   \item[Tipo de fuente:] Artículo de revista. \emph{Journal of Cloud Computing}, Springer. e-ISSN 2192-113X.
   \item[Resumen:] El artículo trata la gestión de recursos en clústeres que orquestan contenedores con Kubernetes, donde el planificador decide en qué nodo se ejecuta cada contenedor. Los autores hicieron una revisión de literatura y clasificaron los algoritmos de planificación en cuatro categorías: planificación genérica, optimización multiobjetivo, enfoques basados en inteligencia artificial y esquemas con autoescalado. Para cada categoría identifican fortalezas, limitaciones y temas pendientes, y concluyen que aún hay margen de mejora, por lo que el trabajo futuro debe enfocarse en desarrollar nuevos algoritmos y mejorar los existentes.
   \item[Dato concreto:] \foreignquote{american}{We initially identified a total of 124 studies from the database searches} \cite[p.~4]{senjab2023}; \foreignquote{american}{our review includes 47 studies on Kubernetes scheduling algorithms published in the last 5 years} \cite[p.~5]{senjab2023}.
-  \item[Nota personal:] Gracias a este artículo tengo un panorama de cómo evolucionan los algoritmos de planificación de Kubernetes más allá de la asignación estática de recursos, sobre todo con inteligencia artificial y autoescalado. Lo usaré en TA-IND-01 para explicar cómo se despliega y escala el sistema analizado.
+  \item[Nota personal:] Gracias a este artículo tengo un panorama de cómo evolucionan los algoritmos de planificación de Kubernetes más allá de la asignación estática de recursos, sobre todo con inteligencia artificial y autoescalado. Lo usaré en TA-IND-01, en tolerancia a fallos y en las transparencias de migración y reubicación, para explicar cómo Kubernetes mueve y vuelve a levantar los contenedores.
 \end{description}
 
 \section{Ficha 5}
@@ -83,14 +83,16 @@
   \item[Tipo de fuente:] Artículo de revista. \emph{IEEE Access}, IEEE. e-ISSN 2169-3536.
   \item[Resumen:] Este artículo investiga si la migración de sistemas monolíticos a microservicios realmente beneficia a pequeñas empresas o si es una tendencia idealizada. El estudio implementó una aplicación web de referencia en cuatro versiones combinando dos arquitecturas (monolito y microservicios) y dos tecnologías (.NET y Java), evaluándolas mediante experimentos controlados locales y en la nube de Azure. Los hallazgos principales demuestran que un monolito supera en rendimiento a los microservicios en una sola máquina, que el escalado vertical es más rentable que el horizontal, y que Java aprovecha mejor las máquinas potentes en servicios de cómputo intensivo, mientras que .NET rinde mejor con servicios livianos en hardware de poca capacidad.
   \item[Dato concreto:] \foreignquote{american}{on a single machine, a monolith performs better than its microservice-based counterpart}; \foreignquote{american}{scaling out beyond a certain number of instances degrades the application performance} \cite[Sec.~VIII, p.~20372]{blinowski2022}.
-  \item[Nota personal:] Analizar este estudio me ayudó a entender que no siempre debo adoptar microservicios por moda. Me dio una perspectiva técnica muy clara sobre cuándo vale la pena escalar verticalmente un monolito frente al costo y la sobrecarga de la infraestructura distribuida. Lo usaré en la discusión de TA-IND-01 para evaluar si al sistema elegido le conviene su arquitectura.
+  \item[Nota personal:] Analizar este estudio me ayudó a entender que no siempre debo adoptar microservicios por moda. Me dio una perspectiva técnica muy clara sobre cuándo vale la pena escalar verticalmente un monolito frente al costo y la sobrecarga de la infraestructura distribuida. Lo usaré en el análisis comparativo y en la postura crítica de TA-IND-01 para opinar si al sistema elegido le conviene su arquitectura o si un monolito le bastaría.
 \end{description}
 
 \section{Declaración de uso de inteligencia artificial}
 
-\begin{tabularx}{\textwidth}{>{\bfseries}l X}
-  Herramienta 1: & Claude (Anthropic), modelo Claude Opus 5.5, en la aplicación Claude Code. \\
-  Para qué se usó: & Corregir un poco mis resumenes y las notas que yo hice. 
+\noindent
+\begin{tabularx}{\textwidth}{>{\bfseries}l >{\raggedright\arraybackslash}X}
+ Herramienta: & Claude (Anthropic), modelo Claude Opus 5.5, en la aplicación Claude Code. \\
+  Para qué se usó: & Para que me ayude corrigiendo y aclarando partes de los borradores me ayudo a analizar en qué sección de la proxima tarea podria a usar cada fuente. \\[6pt]
+  Cómo se verificó: & Abri cada DOI manualmente sus datos (autores, año, título, revista, volumen, número y páginas) se compararon con la página de la editorial. Cada cita textual se buscó en el PDF del artículo para confirmar la sección y la página. Leí y revisé el documento final antes de entregarlo.
 \end{tabularx}
 
 \printbibliography[title={Referencias}]

@@ -1,99 +1,98 @@
+% main.tex -- FORM-FB-01: Fichas bibliográficas
+% Compilar: pdflatex main -> biber main -> pdflatex main -> pdflatex main
 \documentclass[11pt,a4paper]{article}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[american,spanish]{babel}
-\usepackage[margin=2.5cm]{geometry}
+\usepackage[english,spanish]{babel}
 \usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
 \usepackage{csquotes}
-\usepackage{array}
-\usepackage{tabularx}
+\usepackage{xcolor}
 \usepackage{enumitem}
-\usepackage[backend=biber,style=ieee,autolang=other]{biblatex}
 \usepackage[hidelinks]{hyperref}
-\usepackage{xurl}
-\addbibresource{referencias.bib}
-\DeclareFieldFormat{sentencecase}{#1}
 
-\newcommand{\doi}[1]{\href{https://doi.org/#1}{#1}}
-\setlist[description]{leftmargin=0pt,itemsep=6pt}
+% Referencias en formato IEEE (las etiquetas de IEEE se mantienen en inglés)
+\usepackage[backend=biber, style=ieee, language=english, autolang=other]{biblatex}
+\addbibresource{referencias.bib}
+\DefineBibliographyExtras{english}{\uspunctuation}
+
+% Marca para lo que falta redactar. Borrar \pendiente{} al completar.
+\newcommand{\pendiente}[1]{\textcolor{red}{\textbf{[PENDIENTE: #1]}}}
+
+% Estructura de cada ficha
+\newcommand{\ficha}[7]{%
+  \section{#1}
+  \begin{description}[style=nextline, leftmargin=1.5em]
+    \item[Referencia (IEEE)] \fullcite{#2}
+    \item[DOI verificado] \href{https://doi.org/#3}{#3}
+    \item[Resumen] #4
+    \item[Dato concreto] #5
+    \item[Nota personal] #6
+  \end{description}
+  #7
+}
+
+\title{Fichas bibliográficas: fundamentos de sistemas distribuidos\\
+       y arquitecturas distribuidas\\[0.3em]
+       \large FORM-FB-01 --- Sistemas Distribuidos}
+\author{Leonel Leonidas Zambrano Triviño\\
+        Ingeniería de Software --- Séptimo semestre\\
+        Universidad Técnica Estatal de Quevedo\\
+        Docente: Gleiston Cicerón Guerrero Ulloa}
+\date{8 de noviembre de 2026}
 
 \begin{document}
+\maketitle
 
-\begin{center}
-  {\large\bfseries Universidad Técnica Estatal de Quevedo\par}
-  {Facultad de Ciencias de la Computación -- Carrera de Software\par}
-  \vspace{6pt}
-  {Aplicaciones Distribuidas (ISR-701) -- Séptimo nivel, paralelo A\par}
-  \vspace{14pt}
-  {\Large\bfseries FORM-FB-01: Fichas bibliográficas\par}
-  \vspace{4pt}
-  {\large Fundamentos de sistemas distribuidos y arquitecturas distribuidas\par}
-  \vspace{10pt}
-  Benites Pérez Dariem Alberto\par
-  Docente: Gleiston Guerrero Ulloa, PhD\par
-  8 de noviembre de 2026\par
-\end{center}
+% ---------------------------------------------------------------------
+\ficha{Algoritmos de consenso en sistemas distribuidos basados en blockchain}
+  {islam2023consensus}
+  {10.1109/ACCESS.2023.3267047}
+  {Parten de que, en las aplicaciones basadas en blockchain, lograr que todos los nodos de una red descentralizada acuerden el estado de las transacciones es uno de los problemas más complejos, y de que ningún protocolo de consenso sirve para todos los dominios. Después de una revisión en dos etapas, una exploratoria y otra sistemática, describen la arquitectura de blockchain, clasifican los algoritmos de consenso en basados en pruebas y basados en votación, y los comparan según seguridad, consumo energético, descentralización, escalabilidad e interoperabilidad.}
+  {En la Sección VI-B, los autores señalan que Proof of Work (PoW) es el algoritmo que exige mayor poder de procesamiento, pero también el más descentralizado, porque no depende de validadores. En el extremo opuesto, DBFT es el menos descentralizado, ya que la validación la realizan validadores elegidos.}
+  {Esta fuente me ayudó a entender que el consenso no es un problema exclusivo de las criptomonedas, sino un fundamento de cualquier sistema distribuido donde varios nodos deben ponerse de acuerdo sin una autoridad central. La usaré en el marco teórico de TA-IND-01 para explicar la coordinación y la tolerancia a fallos, y para analizar el compromiso entre descentralización, rendimiento y consumo de recursos en el sistema estudiado.}
+  {}
 
-\vspace{10pt}
+% ---------------------------------------------------------------------
+\ficha{Descomposición de monolitos en microservicios}
+  {abgaz2023decomposition}
+  {10.1109/TSE.2023.3287297}
+  {Examinan cómo se descomponen las aplicaciones monolíticas  en microservicios, un problema relevante para empresas con sistemas grandes que quieren automatizar esa transición. Con una revisión sistemática de literatura completada con snowballing, partieron de 5022 estudios que se publicaron entre 2015 y 2021, seleccionaron 35. Proponen el framework M2MDF, que organiza el proceso en seis fases: recolección de datos, análisis del monolito, identificación, optimización, evaluación y despliegue de microservicios. Además clasifican los enfoques, herramientas y las métricas existentes. Concluyen que el área se encuentra en una etapa temprana, sin métricas ni conjuntos de datos estandarizados y con escaso soporte de herramientas.}
+  {Según la página 4227 (Sec. IV-C), 29 de los 35 estudios analizados (82 \%) no realizaron algoritmos de optimización durante la descomposición. En la página 4230 (Sec. IV-E) indica que solo un estudio abordó la fase del despliegue.}
+  {Antes pensaba que pasar de un monolito a microservicios consistía principalmente en dividir el código por módulos. Esta revisión muestra que es un proceso por fases que todavía carece de métodos consolidados. La usaré en TA-IND-01 al describir cómo el sistema analizado llegó a su arquitectura actual. Si fue migrado desde un monolito, contrastaré su proceso con las fases del M2MDF.}
+  {}
 
-\section{Ficha 1}
-\begin{description}
-  \item[Referencia (IEEE):] \fullcite{bacao2026}
-  \item[DOI:] \doi{10.1007/s00607-026-01701-5}
-  \item[Tipo de fuente:] Artículo de revista. \emph{Computing}, Springer. ISSN 0010-485X, e-ISSN 1436-5057.
-  \item[Resumen:] El artículo revisa los desafíos de consistencia en microservicios basados en eventos. El problema es que el conocimiento está fragmentado y no hay consenso sobre cómo definir y mantener la consistencia de datos, procesos y sistemas en arquitecturas distribuidas. Los autores hicieron una revisión sistemática de literatura siguiendo las directrices de Kitchenham y analizaron 38 estudios de Web of Science para clasificar los enfoques existentes. Encontraron tres tipos de consistencia (datos, procesos y evolución del sistema), describieron las estrategias de cada uno y señalaron un vacío importante: la desconexión entre el diseño de los procesos de negocio y su ejecución.
-  \item[Dato concreto:] \foreignquote{american}{Unlike ACID transactions, Sagas do not provide isolation and instead operate under eventual consistency} \cite[Sec.~2.6, p.~6]{bacao2026}.
-  \item[Nota personal:] Este artículo me ayudó a conectar la teoría de sistemas distribuidos con la gestión de procesos de negocio y a entender por qué fallan los microservicios cuando no se alinean los datos, los procesos y la evolución de la arquitectura. Lo usaré en TA-IND-01, en la parte de CAP y PACELC, para explicar qué consistencia elige el sistema y qué pasa cuando falla un paso (tolerancia a fallos).
-\end{description}
+% ---------------------------------------------------------------------
+\ficha{Consumo energético en arquitecturas de microservicios}
+  {araujo2024energy}
+  {10.1109/ACCESS.2024.3389064}
+  {Araujo et al. señalan que la arquitectura de microservicios aprovecha la virtualización para construir aplicaciones con módulos poco acoplados, pero que implica una demanda energética considerable para mantener el rendimiento y la disponibilidad esperados. Mediante una revisión sistemática en IEEE Xplore, Elsevier, Springer, ACM y ScienceDirect, partieron de 3625 artículos y, tras tres etapas de filtrado, analizaron 37. Clasificaron los estudios según su contexto, métricas, método de evaluación, tipo de arquitectura, orquestador y modelo de despliegue. Encontraron que la mayoría prioriza el rendimiento y la elasticidad, mientras que la confiabilidad, la disponibilidad y la sostenibilidad apenas se estudian.}
+  {En la Sección IV-B, los autores reportan que el rendimiento es la métrica principal en el 59,5 \% de los estudios analizados, seguida de la elasticidad (29,7 \%). La confiabilidad aparece solo en el 5,4 \%, y la sostenibilidad y la disponibilidad en el 2,7 \% cada una.}
+  {Antes no había considerado el consumo energético como un costo de los sistemas distribuidos. Esta revisión me mostró que dividir una aplicación en muchos servicios, contenedores y orquestadores también aumenta la energía que consume la infraestructura. La usaré en la parte de análisis crítico de TA-IND-01 para valorar si la arquitectura del sistema estudiado es eficiente en el uso de recursos, y no solo en rendimiento.}
+  {}
 
-\section{Ficha 2}
-\begin{description}
-  \item[Referencia (IEEE):] \fullcite{nicolasplata2024}
-  \item[DOI:] \doi{10.1007/s10586-024-04342-5}
-  \item[Tipo de fuente:] Artículo de revista. \emph{Cluster Computing}, Springer. ISSN 1386-7857, e-ISSN 1573-7543.
-  \item[Resumen:] Los gestores de malla de servicios actuales solo manejan el patrón de canalización (pipes \& filters) y delegan los demás patrones al gestor de contenedores, lo que complica combinarlos. Para resolverlo, los autores proponen las Eblocks, unidades que integran de forma implícita los componentes de la malla (descubrimiento, autenticación y monitoreo) junto con la lógica de procesamiento. Con un caso de estudio real lograron desplegar patrones como manager-worker y patrones internos dentro de cada Eblock, con menores tiempos de servicio y mayor rendimiento que la misma solución montada con Istio sobre Kubernetes.
-  \item[Dato concreto:] \foreignquote{american}{a service mesh (e.g., Istio) is focused on the communication and interactions between services within a microservices architecture} \cite[Sec.~6, p.~7431]{nicolasplata2024}.
-  \item[Nota personal:] Me llamó la atención que Istio depende de Kubernetes para crear réplicas, mientras que las Eblocks llevan las tareas de la malla dentro de cada bloque sin depender tanto del clúster. Me sirvió para conocer otra forma de optimizar flujos de procesamiento intensivos en microservicios. Lo usaré en TA-IND-01, en los modelos de comunicación y en la arquitectura del sistema, para explicar cómo se hablan los servicios entre sí.
-\end{description}
+% ---------------------------------------------------------------------
+\ficha{Seguridad entre servicios en arquitecturas de microservicios}
+  {haindl2024security}
+  {10.1109/ACCESS.2024.3406500}
+  {Se estudia la seguridad en la comunicación entre servicios, un aspecto crítico porque una arquitectura de microservicios expone una superficie de ataque mayor que un monolito y combina múltiples tecnologías. Aplicando una revisión sistemática según las guías de Kitchenham y PRISMA 2020, analizaron 54 publicaciones, seleccionadas de 427 recuperadas en cinco bibliotecas digitales. Se identificó que las amenazas más tratadas se relacionan con los perímetros de seguridad, la superficie de ataque, los contenedores y la falta de monitoreo y detección de intrusos.}
+  {En la página 90261 (Sec. III-B1), indican que 14 de las 54 publicaciones se centran en los perímetros de seguridad y la superficie de ataque, que es la categoría de amenaza más frecuente.}
+  {Hasta ahora asociaba la seguridad sobre todo con el acceso del usuario final. Esta revisión me mostró que en un sistema distribuido también hay que proteger la comunicación interna entre servicios. La usaré en TA-IND-01 para evaluar los riesgos de seguridad del sistema analizado, revisando si aplica medidas como la autenticación entre servicios o un enfoque zero-trust, que los autores recomiendan en la página 90277.}
+  {}
 
-\section{Ficha 3}
-\begin{description}
-  \item[Referencia (IEEE):] \fullcite{velepucha2023}
-  \item[DOI:] \doi{10.1109/ACCESS.2023.3305687}
-  \item[Tipo de fuente:] Artículo de revista. \emph{IEEE Access}, IEEE. e-ISSN 2169-3536.
-  \item[Resumen:] El trabajo aborda la falta de conocimiento sobre los principios teóricos para descomponer sistemas monolíticos en microservicios. Los autores revisan la literatura y relacionan los principios de modularización y de ocultamiento de información de David Parnas (1972) con las recomendaciones de Martin Fowler y Sam Newman; también analizan patrones de diseño y casos de estudio. Proponen una comparación que unifica estos criterios, un resumen de las ventajas y desventajas de ambos enfoques y pautas para enfrentar los desafíos técnicos y organizacionales de la migración.
-  \item[Dato concreto:] En 2002, en Amazon, \foreignquote{american}{all work teams had to expose their data and business functionality through services} \cite[Sec.~V-A, p.~88355]{velepucha2023}.
-  \item[Nota personal:] Este análisis me permitió conectar las bases históricas de la ingeniería de software (como el ocultamiento de información) con las tendencias modernas de desarrollo. Me otorga una visión crítica para justificar cuándo vale la pena migrar a microservicios y cómo estructurar equipos autónomos y sistemas desacoplados de forma sostenible. Lo usaré en la introducción y en la arquitectura del sistema de TA-IND-01 para explicar qué es un monolito, qué son los microservicios y poner el caso de Amazon como ejemplo.
-\end{description}
+% ---------------------------------------------------------------------
+\ficha{Observabilidad en microservicios}
+  {faseeha2025observability}
+  {10.1109/ACCESS.2025.3562125}
+  {Faseeha et al. analizan la observabilidad en arquitecturas de microservicios, motivados por las dificultades que generan los puntos de falla distribuidos, los cuellos de botella y la mala gestión de recursos en entornos nativos de la nube. A partir de una revisión de frameworks y herramientas publicados desde 2019, evaluaron sus capacidades de recolección de métricas, trazado distribuido y agregación de logs. Su principal aporte es una taxonomía temática de siete dimensiones que clasifica las soluciones según su propósito, alcance, entorno de despliegue y patrón de arquitectura, entre otros criterios. Concluyen que los frameworks actuales todavía no cubren bien el monitoreo de recursos ni la observabilidad en tiempo real a gran escala.}
+  {En la página 72012 (Sec. I), los autores establecen que la observabilidad se basa en tres elementos: logs, trazas y métricas. En la página 72033 reportan que OpenTelemetry aparece en 5 de los estudios revisados, y Jaeger y Zipkin en 4 cada uno.}
+  {Esta fuente me permitió distinguir entre monitorear un sistema y hacerlo observable, es decir, poder entender su estado interno a partir de logs, trazas y métricas. La usaré en TA-IND-01 para analizar cómo el sistema estudiado detecta y diagnostica fallas, y qué herramientas de las mencionadas utiliza o podría utilizar.}
+  {}
 
-\section{Ficha 4}
-\begin{description}
-  \item[Referencia (IEEE):] \fullcite{senjab2023}
-  \item[DOI:] \doi{10.1186/s13677-023-00471-1}
-  \item[Tipo de fuente:] Artículo de revista. \emph{Journal of Cloud Computing}, Springer. e-ISSN 2192-113X.
-  \item[Resumen:] El artículo trata la gestión de recursos en clústeres que orquestan contenedores con Kubernetes, donde el planificador decide en qué nodo se ejecuta cada contenedor. Los autores hicieron una revisión de literatura y clasificaron los algoritmos de planificación en cuatro categorías: planificación genérica, optimización multiobjetivo, enfoques basados en inteligencia artificial y esquemas con autoescalado. Para cada categoría identifican fortalezas, limitaciones y temas pendientes, y concluyen que aún hay margen de mejora, por lo que el trabajo futuro debe enfocarse en desarrollar nuevos algoritmos y mejorar los existentes.
-  \item[Dato concreto:] \foreignquote{american}{We initially identified a total of 124 studies from the database searches} \cite[p.~4]{senjab2023}; \foreignquote{american}{our review includes 47 studies on Kubernetes scheduling algorithms published in the last 5 years} \cite[p.~5]{senjab2023}.
-  \item[Nota personal:] Gracias a este artículo tengo un panorama de cómo evolucionan los algoritmos de planificación de Kubernetes más allá de la asignación estática de recursos, sobre todo con inteligencia artificial y autoescalado. Lo usaré en TA-IND-01, en tolerancia a fallos y en las transparencias de migración y reubicación, para explicar cómo Kubernetes mueve y vuelve a levantar los contenedores.
-\end{description}
-
-\section{Ficha 5}
-\begin{description}
-  \item[Referencia (IEEE):] \fullcite{blinowski2022}
-  \item[DOI:] \doi{10.1109/ACCESS.2022.3152803}
-  \item[Tipo de fuente:] Artículo de revista. \emph{IEEE Access}, IEEE. e-ISSN 2169-3536.
-  \item[Resumen:] Este artículo investiga si la migración de sistemas monolíticos a microservicios realmente beneficia a pequeñas empresas o si es una tendencia idealizada. El estudio implementó una aplicación web de referencia en cuatro versiones combinando dos arquitecturas (monolito y microservicios) y dos tecnologías (.NET y Java), evaluándolas mediante experimentos controlados locales y en la nube de Azure. Los hallazgos principales demuestran que un monolito supera en rendimiento a los microservicios en una sola máquina, que el escalado vertical es más rentable que el horizontal, y que Java aprovecha mejor las máquinas potentes en servicios de cómputo intensivo, mientras que .NET rinde mejor con servicios livianos en hardware de poca capacidad.
-  \item[Dato concreto:] \foreignquote{american}{on a single machine, a monolith performs better than its microservice-based counterpart}; \foreignquote{american}{scaling out beyond a certain number of instances degrades the application performance} \cite[Sec.~VIII, p.~20372]{blinowski2022}.
-  \item[Nota personal:] Analizar este estudio me ayudó a entender que no siempre debo adoptar microservicios por moda. Me dio una perspectiva técnica muy clara sobre cuándo vale la pena escalar verticalmente un monolito frente al costo y la sobrecarga de la infraestructura distribuida. Lo usaré en el análisis comparativo y en la postura crítica de TA-IND-01 para opinar si al sistema elegido le conviene su arquitectura o si un monolito le bastaría.
-\end{description}
-
-\section{Declaración de uso de inteligencia artificial}
-
-\noindent
-\begin{tabularx}{\textwidth}{>{\bfseries}l >{\raggedright\arraybackslash}X}
- Herramienta: & Claude (Anthropic), modelo Claude Opus 5.5, en la aplicación Claude Code. \\
-  Para qué se usó: & Para que me ayude corrigiendo y aclarando partes de los borradores me ayudó a analizar en qué sección de la próxima tarea podría usar cada fuente. \\[6pt]
-  Cómo se verificó: & Abrí cada DOI manualmente y sus datos (autores, año, título, revista, volumen, número y páginas) se compararon con la página de la editorial. Cada cita textual se buscó en el PDF del artículo para confirmar la sección y la página. Leí y revisé el documento final antes de entregarlo.
-\end{tabularx}
+% ---------------------------------------------------------------------
+\section*{Declaración de uso de inteligencia artificial}
+Para esta actividad utilicé Claude (Anthropic) como apoyo para buscar y verificar fuentes académicas, generar el archivo \texttt{.bib} y la plantilla \LaTeX{}, y extraer de los artículos datos con su página o sección, que usé como base para redactar los resúmenes y las notas personales. Verifiqué cada fuente abriendo su DOI y comprobando que los autores, el año, el título, la revista, el volumen y las páginas coincidieran con la publicación real, y contrasté los datos concretos con el texto de cada artículo.
 
 \printbibliography[title={Referencias}]
 

@@ -1,0 +1,15 @@
+# Archivos auxiliares de LaTeX (se regeneran al compilar)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.out
+*.run.xml
+*.toc
+*.lot
+*.lof
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv

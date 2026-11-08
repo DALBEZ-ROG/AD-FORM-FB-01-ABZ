@@ -1,0 +1,242 @@
+% FORM-FB-01 - Fichas bibliográficas
+% Fundamentos de sistemas distribuidos y arquitecturas distribuidas
+% Autor: Apunte Pazmiño Washington German
+% Compilación: pdflatex -> biber -> pdflatex -> pdflatex (ver README.md)
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[american,spanish,es-tabla,es-noquoting]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{xltabular}
+\usepackage{enumitem}
+\usepackage[backend=biber,style=ieee,autolang=other,maxcitenames=6]{biblatex}
+\usepackage[hidelinks]{hyperref}
+
+\addbibresource{referencias.bib}
+\renewcommand*{\bibfont}{\small}
+% Evita cortar un DOI justo después de un guion (se confundiría con un guion de partición)
+\setcounter{biburlbigbreakpenalty}{10000}
+
+% ---------------------------------------------------------------------------
+% Datos del documento (editar aquí si cambia algún dato)
+% ---------------------------------------------------------------------------
+\newcommand{\autor}{Apunte Pazmiño Washington German}
+\newcommand{\docente}{Gleiston Guerrero Ulloa, PhD}
+\newcommand{\nivel}{Séptimo nivel, paralelo B}
+\newcommand{\fecha}{8 de noviembre de 2026}
+
+% Enlace a un DOI mostrado como URL completa
+\newcommand{\doiurl}[1]{\url{https://doi.org/#1}}
+
+% Formato de las fichas: columna de etiqueta + columna de contenido.
+% Nota: \fullcite va entre llaves porque biblatex-ieee usa & como delimitador
+% al agrupar rangos de páginas, y dentro de una tabla eso cerraría la celda.
+\newcolumntype{L}{>{\bfseries\raggedright\arraybackslash}p{3.0cm}}
+\newenvironment{ficha}
+  {\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.25}%
+   \xltabular{\textwidth}{@{}LX@{}}\toprule}
+  {\bottomrule\endxltabular}
+
+\setlist{itemsep=2pt,topsep=4pt}
+
+\hypersetup{
+  pdftitle={FORM-FB-01: Fichas bibliográficas},
+  pdfauthor={\autor},
+  pdfsubject={Aplicaciones Distribuidas (ISR-701)}
+}
+
+\begin{document}
+
+% ---------------------------------------------------------------------------
+% Portada (estructura del ejemplo de la asignatura)
+% ---------------------------------------------------------------------------
+% La portada no crea ancla de página: evita el ancla duplicada "page.1" con la página siguiente.
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+  \centering
+  \vspace*{2.2cm}
+  {\Large\bfseries Universidad Técnica Estatal de Quevedo\par}
+  \vspace{0.9cm}
+  {\large\scshape Facultad de Ciencias de la Computación\\ y Diseño Digital\par}
+  \vspace{0.2cm}
+  {\scshape Carrera de Software\par}
+  \vspace{1.6cm}
+  {\large\bfseries Fichas bibliográficas: fundamentos de sistemas\\ distribuidos y arquitecturas distribuidas\par}
+  \vspace{0.15cm}
+  {\itshape Bibliographic records: fundamentals of distributed systems\\ and distributed architectures\par}
+  \vspace{0.15cm}
+  (\textsc{FORM-FB-01})\par
+  \vspace{1.6cm}
+  {\bfseries Asignatura:\par}
+  {\scshape Aplicaciones Distribuidas (ISR-701)\par}
+  \vspace{0.8cm}
+  {\bfseries Autor:\par}
+  \autor\par
+  \vspace{0.8cm}
+  {\bfseries Docente:\par}
+  \docente\par
+  \vspace{0.8cm}
+  {\bfseries Nivel y paralelo:\par}
+  \nivel\par
+  \vspace{0.8cm}
+  {\bfseries Afiliación:\par}
+  UTEQ\par
+  \vfill
+  Modalidad individual · Semana 2 (2 al 8 de noviembre de 2026)\par
+  \fecha\par
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+\listoftables
+\clearpage
+
+% ---------------------------------------------------------------------------
+\section{Introducción y criterios de selección}
+% ---------------------------------------------------------------------------
+
+Este documento reúne cinco fichas bibliográficas que servirán como base del Informe Académico Individual TA-IND-01, donde se analizará de forma crítica un sistema distribuido real. Las fuentes se eligieron para cubrir, cada una desde un ángulo distinto, los temas que exige ese análisis: la arquitectura del sistema, la forma en que se comunican sus componentes, la consistencia de los datos replicados, la tolerancia a fallos y la observabilidad.
+
+Para seleccionarlas se aplicaron estos criterios:
+
+\begin{itemize}
+  \item \textbf{Actualidad:} publicaciones de 2024 a 2026, dentro del periodo exigido (2021--2026); tres de las cinco son de 2025 o 2026.
+  \item \textbf{Calidad:} solo artículos de revistas indexadas en Scopus, publicadas por Springer Nature y Elsevier.
+  \item \textbf{Acceso abierto:} el PDF de los cinco artículos se descarga gratis desde el sitio del editor, lo que permitió leerlos completos y ubicar la página o sección de cada dato citado.
+  \item \textbf{Verificación:} cada DOI se abrió en \url{https://doi.org} y llevó a la página del editor del artículo citado. Los autores, el año, el título, la revista, el volumen, el número y las páginas o el número de artículo se compararon con esa página y con el registro Crossref del DOI (consulta del 7 de noviembre de 2026).
+\end{itemize}
+
+La Tabla~\ref{tab:fuentes} resume las fuentes; las referencias completas en formato IEEE se generan con \texttt{biblatex} desde el archivo \texttt{referencias.bib}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Fuentes seleccionadas}
+  \label{tab:fuentes}
+  \small
+  \begin{tabular}{@{}c>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{4.2cm}c>{\raggedright\arraybackslash}p{3.0cm}@{}}
+    \toprule
+    \textbf{Ref.} & \textbf{Tema} & \textbf{Revista (editorial)} & \textbf{Año} & \textbf{Tipo de estudio} \\
+    \midrule
+    \cite{pournazari2025} & Arquitecturas en el continuo borde--nube & \emph{Cluster Computing} (Springer) & 2025 & Revisión sistemática \\
+    \cite{landau2025} & Comunicación asíncrona con brokers de mensajes & \emph{Journal of Parallel and Distributed Computing} (Elsevier) & 2025 & Algoritmo, simulación e implementación \\
+    \cite{ferreira2024} & Consistencia y replicación en bases NoSQL & \emph{Journal of Cloud Computing} (Springer) & 2024 & Estudio experimental \\
+    \cite{alsaidahmad2024} & Tolerancia a fallos e ingeniería del caos & \emph{Computing} (Springer) & 2024 & Estudio empírico exploratorio \\
+    \cite{barata2026} & Observabilidad: anomalías y causa raíz & \emph{Cluster Computing} (Springer) & 2026 & Revisión sistemática \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\clearpage
+% ---------------------------------------------------------------------------
+\section{Fichas bibliográficas}
+% ---------------------------------------------------------------------------
+
+\subsection{Ficha 1: arquitecturas en el continuo borde--nube}
+
+\begin{ficha}
+  Referencia (IEEE) & {\fullcite{pournazari2025}} \\ \midrule
+  DOI & \doiurl{10.1007/s10586-025-05577-6} \\ \midrule
+  Tipo de fuente & Artículo de revista: revisión sistemática (PRISMA). \emph{Cluster Computing}, Springer Nature. ISSN 1386-7857, e-ISSN 1573-7543. Indexada en Scopus, Q1 en SJR 2024. Acceso abierto (CC BY 4.0), con PDF gratuito en el sitio del editor. \\ \midrule
+  Resumen & Cuando una aplicación exige baja latencia, maneja datos sensibles o depende de recursos repartidos cerca de los datos, la nube por sí sola se queda corta. Los autores abordan la descarga de cómputo (\emph{computation offloading}) a lo largo del continuo borde--nube. Ponen el foco en las soluciones descentralizadas y federadas, un terreno que las revisiones apenas habían explorado. Siguiendo el protocolo PRISMA sobre publicaciones de 2018 a 2024, partieron de 607 resultados y conservaron 88. Con ellos construyen una taxonomía de cuatro dimensiones (arquitectura, estrategia, objetivos y evaluación) y señalan siete desafíos, entre ellos la movilidad y la tolerancia a fallos. \\ \midrule
+  Dato concreto & Entre las soluciones descentralizadas revisadas, P2P es el patrón de comunicación más adoptado (37.5~\%), y Raft y Zab son los protocolos de consenso más usados, con 14.8~\% cada uno \cite[Sec.~5.3, p.~32]{pournazari2025}. El artículo también define el continuo borde--nube como la extensión de la nube con dispositivos de bajo consumo y baja latencia ubicados cerca de las fuentes de datos \cite[Sec.~1, p.~2]{pournazari2025}. \\ \midrule
+  Nota personal & Hasta ahora pensaba que diseñar un sistema distribuido era, en el fondo, elegir entre cliente-servidor y microservicios. La revisión me hizo ver que en el continuo borde--nube coexisten varios patrones. También aprendí que, cuando no hay un coordinador fijo, los nodos llegan a acuerdos mediante protocolos de consenso como Raft, que elige un líder de forma dinámica. En TA-IND-01 la usaré en la sección de arquitectura, para clasificar el sistema elegido como centralizado, jerárquico o P2P y explicar en qué punto procesa sus datos. La descarga de cómputo entre nodos me servirá además como ejemplo concreto de transparencia de migración. \\
+\end{ficha}
+
+\clearpage
+\subsection{Ficha 2: comunicación asíncrona con brokers de mensajes}
+
+\begin{ficha}
+  Referencia (IEEE) & {\fullcite{landau2025}} \\ \midrule
+  DOI & \doiurl{10.1016/j.jpdc.2025.105071} \\ \midrule
+  Tipo de fuente & Artículo de revista: propuesta algorítmica con simulación e implementación. \emph{Journal of Parallel and Distributed Computing}, Elsevier. ISSN 0743-7315. Indexada en Scopus. Acceso abierto (CC BY 4.0), con PDF gratuito en ScienceDirect. \\ \midrule
+  Resumen & En un \emph{broker} como Kafka, los consumidores de un grupo se dividen las particiones de un tema para procesarlas en paralelo. Cuántos consumidores mantener y cuándo reasignar particiones son decisiones que pesan en el costo y la latencia, porque cada rebalanceo detiene la lectura. El artículo plantea el problema como un \emph{bin packing} con ítems de tamaño variable. Sobre esa base adapta heurísticas que consideran tanto el costo de operación como el de rebalanceo. En simulación, la variante MWF logró menor latencia que Kafka con la misma cantidad de consumidores, y luego la propuesta se implementó sobre Kafka y Kubernetes. \\ \midrule
+  Dato concreto & En las simulaciones, MWF (\emph{modified worst fit}) alcanzó una latencia de percentil 99 de 2.24~s, mientras que la configuración de Kafka con el mismo costo operativo (15 consumidores) llegó a 364.66~s \cite[Sec.~6.4]{landau2025}. En las conclusiones, los autores añaden que Kafka requiere al menos 60~\% más consumidores que su método \cite[Sec.~9]{landau2025}. \\ \midrule
+  Nota personal & Para mí, la comunicación asíncrona era simplemente colocar una cola entre dos servicios. El artículo me mostró que el \emph{broker} divide el trabajo en particiones y que moverlas no es gratis. Mientras una partición pasa de un consumidor a otro, nadie la lee, y eso se nota en la latencia. Lo aprovecharé en dos secciones de TA-IND-01. En modelos de comunicación, me servirá para describir el esquema de publicación/suscripción del sistema elegido. En escalabilidad, lo usaré para analizar cómo debería aumentar el número de consumidores a medida que sube la carga. \\
+\end{ficha}
+
+\clearpage
+\subsection{Ficha 3: consistencia y replicación en bases NoSQL}
+
+\begin{ficha}
+  Referencia (IEEE) & {\fullcite{ferreira2024}} \\ \midrule
+  DOI & \doiurl{10.1186/s13677-024-00716-7} \\ \midrule
+  Tipo de fuente & Artículo de revista: estudio experimental. \emph{Journal of Cloud Computing}, Springer Nature (SpringerOpen). e-ISSN 2192-113X. Indexada en Scopus. Acceso abierto (CC BY-NC-ND 4.0), con PDF gratuito en el sitio del editor. \\ \midrule
+  Resumen & ¿Qué precio se paga por exigir consistencia fuerte en una base NoSQL replicada? El trabajo busca medirlo, partiendo de que la latencia pesa más cuanto más separadas están las réplicas. Los autores montaron Cassandra, MongoDB y Redis en Google Cloud con clústeres de tres nodos, dentro de una región y después en varias. Contrastaron niveles de consistencia débiles y fuertes, como ONE y ALL en Cassandra. Las pruebas se hicieron con Locust, de 1 a 10 usuarios concurrentes, en 200 escenarios. Los tres motores mostraron el mismo patrón: a mayor consistencia, menor \emph{throughput} y mayor tiempo de respuesta, sobre todo en el despliegue multirregión. \\ \midrule
+  Dato concreto & Al pasar de consistencia débil a fuerte en el despliegue multirregión, el \emph{throughput} de escritura cayó en promedio 95.12~\% y su tiempo de respuesta aumentó 3454.34~\%. En una sola región, las variaciones promedio fueron menores: una caída de 32.94~\% y un aumento de 78.33~\%, respectivamente \cite[Tabla~8, p.~14]{ferreira2024}. \\ \midrule
+  Nota personal & Del teorema CAP conocía la definición, pero nunca lo había visto expresado en números. El artículo no habla de PACELC. Aun así, sus resultados encajan con la parte \enquote{ELC} de ese modelo: incluso sin particiones de red, optar por consistencia fuerte cuesta latencia, y ese costo aumenta con la distancia entre réplicas. En TA-IND-01 lo ubicaré en la sección de consistencia y replicación (CAP y PACELC). Allí pretendo justificar qué nivel de consistencia requiere cada operación del sistema analizado y qué pasaría si sus datos se replicaran en distintas regiones. \\
+\end{ficha}
+
+\clearpage
+\subsection{Ficha 4: tolerancia a fallos e ingeniería del caos}
+
+\begin{ficha}
+  Referencia (IEEE) & {\fullcite{alsaidahmad2024}} \\ \midrule
+  DOI & \doiurl{10.1007/s00607-024-01292-z} \\ \midrule
+  Tipo de fuente & Artículo de revista: estudio empírico exploratorio. \emph{Computing}, Springer Nature. ISSN 0010-485X, e-ISSN 1436-5057. Indexada en Scopus. Acceso abierto (CC BY 4.0), con PDF gratuito en el sitio del editor. \\ \midrule
+  Resumen & Los autores examinan cómo reaccionan las aplicaciones nativas de la nube ante retardos inyectados bajo distintas cargas. También evalúan si estos experimentos sacan a la luz fallos de disponibilidad que el análisis de confiabilidad pasa por alto. Aplicaron ingeniería del caos en AWS sobre dos casos. El primero fue una aplicación \emph{serverless} en .NET basada en funciones Lambda, y el segundo, la tienda PrestaShop en contenedores con MySQL. Los retardos fueron de 300~ms a 27.5~s, mientras JMeter simulaba entre 150 y 1200 usuarios. Las dos aplicaciones dejaron ver debilidades y puntos de fallo, como peticiones que nunca se atendieron y caídas del \emph{throughput}. \\ \midrule
+  Dato concreto & Con 1200 usuarios, el \emph{throughput} de PrestaShop cayó, respecto de la línea base, 23~\% con retardos de 300~ms y 87~\% con retardos de 15\,000~ms \cite[Sec.~4.2.3, p.~2418]{alsaidahmad2024}. En la aplicación \emph{serverless}, el 17~\% de las solicitudes quedó sin atender en los experimentos con retardo de 10\,000~ms \cite[Sec.~4.1.3, p.~2411]{alsaidahmad2024}. Los autores definen la ingeniería del caos como una disciplina que ayuda a identificar y corregir debilidades potenciales en sistemas complejos \cite[Sec.~2.2, p.~2394]{alsaidahmad2024}. \\ \midrule
+  Nota personal & Yo relacionaba la tolerancia a fallos únicamente con tener servidores replicados. Este trabajo me hizo ver que también hay que comprobarla, provocando fallos de manera controlada. Con un retardo de 10~s, el 17~\% de las solicitudes se quedó sin respuesta. Lo tomaré como base en la sección de tolerancia a fallos de TA-IND-01. Allí propondré un experimento de caos sobre el sistema elegido y fijaré las métricas a observar (latencia, \emph{throughput} y tasa de error) antes de emitir un juicio sobre su disponibilidad. \\
+\end{ficha}
+
+\clearpage
+\subsection{Ficha 5: observabilidad, anomalías y causa raíz}
+
+\begin{ficha}
+  Referencia (IEEE) & {\fullcite{barata2026}} \\ \midrule
+  DOI & \doiurl{10.1007/s10586-026-06095-9} \\ \midrule
+  Tipo de fuente & Artículo de revista: revisión sistemática (PRISMA). \emph{Cluster Computing}, Springer Nature. ISSN 1386-7857, e-ISSN 1573-7543. Indexada en Scopus, Q1 en SJR 2024. Acceso abierto (CC BY 4.0), con PDF gratuito en el sitio del editor. \\ \midrule
+  Resumen & En los microservicios los cambios son frecuentes, conviven tecnologías heterogéneas y cada servicio depende de otros. Por eso cuesta detectar anomalías y rastrear su causa raíz, y muchos métodos requieren escoger métricas a mano o acudir a expertos. Esta revisión sistemática, elaborada con PRISMA, reúne estudios hasta 2025 en bases como IEEE Xplore, ACM, SpringerLink, Scopus y Web of Science. Los autores agrupan los enfoques según la fuente de datos (logs, trazas distribuidas y métricas) y el tipo de aprendizaje. Concluyen que pocos trabajos se ocupan de identificar la causa raíz. Proponen avanzar hacia un diagnóstico distribuido confiable, y no solo preciso. \\ \midrule
+  Dato concreto & Al comparar los métodos, la revisión afirma que \foreignquote{american}{Log-based is the most accurate data collection method} y que la combinación de logs y trazas es la más equilibrada \cite[Sec.~5.4, p.~27]{barata2026}. También señala que los métodos basados en monitoreo encabezan la recolección de datos, aunque las técnicas basadas en trazas dominaron en los últimos tres años \cite[Sec.~5.2.1, p.~24]{barata2026}. \\ \midrule
+  Nota personal & Entendí que la observabilidad no puede separarse de la tolerancia a fallos. En un sistema compuesto por cientos de servicios, si no se generan registros, trazas y métricas que realmente aporten información, resulta imposible identificar dónde se originó un error y cómo se extendió hacia otros componentes. En el TA-IND-01 incluiré esta revisión en dos secciones: en la de tolerancia a fallos, para describir cómo el sistema seleccionado detecta y diagnostica sus errores, y en la postura crítica, para analizar si su monitoreo se apoya en una única fuente de datos o si integra varias. \\
+\end{ficha}
+
+\clearpage
+% ---------------------------------------------------------------------------
+\section{Uso previsto de las fuentes en TA-IND-01}
+% ---------------------------------------------------------------------------
+
+La Tabla~\ref{tab:uso} ubica cada fuente en la sección del informe TA-IND-01 donde se empleará.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Uso previsto de cada fuente en TA-IND-01}
+  \label{tab:uso}
+  \footnotesize
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.0cm}c>{\raggedright\arraybackslash}p{8.6cm}@{}}
+    \toprule
+    \textbf{Sección de TA-IND-01} & \textbf{Fuente} & \textbf{Aporte} \\
+    \midrule
+    Arquitectura del sistema & \cite{pournazari2025} & Patrones cliente/servidor, jerárquico y P2P; ubicación del procesamiento en el continuo borde--nube. \\
+    Modelos de comunicación & \cite{landau2025} & Publicación/suscripción, particiones y grupos de consumidores en un broker. \\
+    Consistencia y replicación (CAP y PACELC) & \cite{ferreira2024} & Costo medido de la consistencia fuerte y compromiso entre latencia y consistencia. \\
+    Escalabilidad y transparencias & \cite{pournazari2025}, \cite{landau2025} & Escalado de consumidores; migración de cómputo y reubicación de particiones como ejemplos de transparencia. \\
+    Tolerancia a fallos & \cite{alsaidahmad2024}, \cite{barata2026} & Pruebas de resiliencia por inyección de fallos; detección de anomalías y diagnóstico de la causa raíz. \\
+    Análisis crítico y postura & \cite{ferreira2024}--\cite{barata2026} & Evidencia cuantitativa para juzgar las decisiones de diseño del sistema elegido. \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% ---------------------------------------------------------------------------
+\section{Declaración de uso de inteligencia artificial}
+% ---------------------------------------------------------------------------
+
+\noindent
+{\small
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{3.2cm}X@{}}
+  \toprule
+  Herramienta & Claude (Anthropic), modelo Claude Opus 5.5, en la aplicación Claude. \\ \midrule
+  Para qué se usó & Para buscar artículos candidatos y revisar sus metadatos en Crossref, comprobar que el PDF de cada uno es de libre acceso, extraer del texto completo cada dato concreto y redactarlo con su página o sección, redactar la introducción y la tabla de uso previsto, generar el código LaTeX, el archivo \texttt{.bib} y el \texttt{README.md}, y preparar un primer borrador de los resúmenes y las notas personales, que después reescribí con mis propias palabras; la IA solo revisó la ortografía y la gramática de esa versión final y recortó algunas palabras para ajustar los resúmenes a la extensión pedida. \\ \midrule
+  Cómo se verificó & Cada DOI se abrió en \url{https://doi.org} y llevó al artículo citado. Autores, año, título, revista, volumen, número y páginas o número de artículo se cotejaron con la página del editor y con el registro Crossref. Cada dato concreto se buscó en el texto completo del artículo para confirmar su sección o página. El documento se compiló sin errores y se revisó antes de subirlo al repositorio. \\
+  \bottomrule
+\end{tabularx}}
+
+\printbibliography[title={Referencias},heading=bibintoc]
+
+\end{document}

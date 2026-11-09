@@ -11,6 +11,7 @@ Son cinco fichas bibliográficas sobre fundamentos de sistemas distribuidos y ar
 - `documento/main.tex`: código LaTeX de las fichas (archivo principal).
 - `documento/referencias.bib`: las cinco referencias en BibTeX.
 - `documento/main.pdf`: PDF compilado.
+- `referencias-pdf/`: los cinco artículos citados en PDF, numerados igual que las fichas (01 a 05). Son de acceso abierto con licencia Creative Commons, que permite compartirlos sin cambios.
 - `documento/ieee.bbx` y `documento/ieee.cbx`: estilo biblatex-ieee v1.4g (licencia LPPL 1.3c), sin cambios. Están junto al documento para que las referencias salgan con el mismo formato en cualquier computadora.
 
 ## Compilación

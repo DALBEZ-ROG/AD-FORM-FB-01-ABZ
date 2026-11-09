@@ -5,12 +5,17 @@ Facultad de Ciencias de la Computación
 
 Carrera de Software
 
-Nombre: Benites Pérez Dariem Alberto
+Cada trabajo individual se encuentra en su respectiva rama.
 
+Integrantes: 
+
+- BENITES PÉREZ DARIEM ALBERTO
+- APUNTE PAZMIÑO WASHINGTON GERMAN
+- ZAMBRANO TRIVIÑO LEONEL LEONIDAS
 
 Aplicaciones Distribuidas
 
-Séptimo nivel paralelo A
+Séptimo nivel paralelo B
 
 Docente: Gleiston Guerrero Ulloa, PhD
 
